@@ -23,6 +23,12 @@
 
       text-decoration: none;
       color: black;
+
+      cursor: pointer;
+
+      &:hover{
+        opacity: .8;
+      }
     }
   }
 }

@@ -9,9 +9,22 @@
   background-color: black;
   color: white;
   text-transform: uppercase;
-  font-weight: bolder;
+  font-weight: normal;
   border: none;
   cursor: pointer;
+
+  &.google-sign-in{
+    background-color: #4285F4;
+    color: white;
+
+    &:hover{
+      background-color: #357ae8;
+      border: none;
+      color: white;
+    }
+  }
+
+
 
   &:hover {
     background-color: white;
