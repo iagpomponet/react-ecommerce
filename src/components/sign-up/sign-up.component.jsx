@@ -22,6 +22,8 @@ class SignUp extends React.Component {
   handleSubmit = async (e) => {
     e.preventDefault();
 
+    debugger;
+
     const { displayName, email, password, confirmPassword } = this.state;
 
     if(password != confirmPassword){
@@ -49,6 +51,7 @@ class SignUp extends React.Component {
   handleChange = (e) => {
     const { name , value } = e.target;
 
+
     this.setState({ [name] : value })
   }
 
@@ -60,13 +63,14 @@ class SignUp extends React.Component {
         <h2 className="title">I do not have a account</h2>
         <span>Sign up with your e-mail and password</span>
         <form action="" className="sign-up-form" onSubmit={this.handleSubmit}>
-            <FormInput type="text" name="displayName" value={displayName} onChange={this.handleChange}></FormInput>
-            <FormInput type="email" name="email" value={email} onChange={this.handleChange}></FormInput>
-            <FormInput type="password" name="password" value={password} onChange={this.handleChange}></FormInput>
-            <FormInput type="password" name="confirmPassword" value={confirmPassword} onChange={this.handleChange}></FormInput>
+            <FormInput type="text" label="name" name="displayName" value={displayName} onChange={this.handleChange}></FormInput>
+            <FormInput type="email" label="email" name="email" value={email} onChange={this.handleChange}></FormInput>
+            <FormInput type="password" label="password" name="password" value={password} onChange={this.handleChange}></FormInput>
+            <FormInput type="password" label="confirm password" name="confirmPassword" value={confirmPassword} onChange={this.handleChange}></FormInput>
+            <CustomButton type="submit">SIGN UP</CustomButton>
         </form>
 
-        <CustomButton type="submit">SIGN UP</CustomButton>
+        
       </div>
     )
   }
