@@ -4,6 +4,8 @@ import ShopPage from './pages/shop/shop.component';
 import Header from './components/header/header.component';
 import Login from './pages/login/login.component'
 
+import { connect } from 'react-redux';
+
 import { auth, createUserProfileDocument } from './firebase/firebase.utils'
 
 
@@ -68,4 +70,8 @@ class App extends React.Component {
   
 }
 
-export default App;
+const mapDispatchToProps = dispatch => ({
+  setCurrentUser: user => dispatch(setCurrentUser(user))
+})
+
+export default connect(null, mapDispatchToProps)(App);
