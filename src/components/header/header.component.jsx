@@ -10,6 +10,7 @@ import { auth } from '../../firebase/firebase.utils';
 import './header.styles.scss';
 
 const Header = ({ currentUser }) => {
+  console.log('currentUser :>> ', currentUser);
   return (
     <div className='header'>
       <Link className="logo-container" to="/">
@@ -31,7 +32,6 @@ const Header = ({ currentUser }) => {
 }
 
 const mapStateToProps = state => {
-  
   return {
     currentUser: state.user.currentUser
   }

@@ -12,7 +12,7 @@ import { auth, createUserProfileDocument } from './firebase/firebase.utils'
 
 import './App.css'
 
-import { Route, Switch } from 'react-router-dom'; 
+import { Route, Switch, Redirect } from 'react-router-dom'; 
 
 
 class App extends React.Component { 
@@ -65,7 +65,7 @@ class App extends React.Component {
         <Header path="/" />
         <Switch>
           <Route exact path='/' component={HomePage} />
-          <Route exact path='/login' component={Login} />
+          <Route exact path='/login' render={() => this.props.currentUser ? (<Redirect to="/"/>) : <Login />} />
           <Route exact path='/shop' component={ShopPage} />
         </Switch>
       </div>
@@ -73,9 +73,13 @@ class App extends React.Component {
   
 }
 
+const mapStateToProps = ({ user }) => ({
+  currentUser: user.currentUser
+})
+
 const mapDispatchToProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user))
 })
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
 
