@@ -3,6 +3,7 @@ import HomePage from './pages/home/homepage.component';
 import ShopPage from './pages/shop/shop.component';
 import Header from './components/header/header.component';
 import Login from './pages/login/login.component'
+import { setCurrentUser } from './redux/user/user.actions'; 
 
 import { connect } from 'react-redux';
 
@@ -26,6 +27,8 @@ class App extends React.Component {
   unsubscribeFromAuth = null;
 
   componentDidMount(){
+    const { setCurrentUser } = this.props;
+
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       // this.setState({ currentUser: user });
 
@@ -37,7 +40,7 @@ class App extends React.Component {
         userRef.onSnapshot(snapShot => {
           console.log(snapShot)
 
-          this.setState({
+          setCurrentUser({
             currentUser: {
               id:  snapShot.id,
               ...snapShot.data()
@@ -47,7 +50,7 @@ class App extends React.Component {
           console.log(this.state)
         })
       } else {
-        this.setState({ currentUser : userAuth })
+        setCurrentUser({ currentUser : userAuth })
       } 
     })
   }
@@ -59,7 +62,7 @@ class App extends React.Component {
   render(){
       return <div>
         {/* switch nao renderiza nada depois de achar uma url que bata */}
-        <Header path="/" currentUser={this.state.currentUser}/>
+        <Header path="/" />
         <Switch>
           <Route exact path='/' component={HomePage} />
           <Route exact path='/login' component={Login} />
@@ -75,3 +78,4 @@ const mapDispatchToProps = dispatch => ({
 })
 
 export default connect(null, mapDispatchToProps)(App);
+
